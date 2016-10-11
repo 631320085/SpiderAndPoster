@@ -1,10 +1,8 @@
 from urllib.request import urlopen
-
 import threading
 
 class WebHtml():
     "网站html获取类"
-
     #访问的Url列表
     UrlList = list()
     #GetHtml单个url的结果
@@ -24,7 +22,7 @@ class WebHtml():
 
     def GetHtml(self, url = None):
         "获取单个网站数据"
-        #没有穿参时使用url列表第一个
+        #没有传参时使用url列表第一个
         if(url == None):
             url = self.UrlList[0] if isinstance(self.UrlList, list) else self.UrlList
         #获取网站返回值
@@ -66,4 +64,3 @@ class WebHtml():
         #等待线程全部完成返回结果
         t.join()
         return self.HtmlDic
-
