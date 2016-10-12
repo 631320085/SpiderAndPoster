@@ -2,8 +2,8 @@ from HtmlGetter import WebHtml
 import datetime
 
 # GetHtml 测试
-wh = WebHtml("http://www.zhihu.com/")
-print(wh.GetHtml())
+# wh = WebHtml("http://www.zhihu.com/")
+# print(wh.GetHtml())
 
 # TimeOut 测试
 # wh = WebHtml("http://www.google.com/")
