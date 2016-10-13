@@ -3,13 +3,13 @@ import redis
 import re
 import threading
 
-DigDeep = 2
+DigDeep = 3
 ForceGet = False
 RedisClient = redis.StrictRedis(port=6381, charset="utf-8", decode_responses=True)
 
 
 def main():
-    url = "http://www.3demoo.com"
+    url = "http://www.360.com"
     DigSite(url)
 
 
@@ -55,7 +55,7 @@ def DigSite(url, deep=1):
         if deep > DigDeep:
             return
         urlset = set()
-        for url in re.findall(r"https?://[_\w\-\.]+(?:(?:\.com)|(?:\.cn)|(?:\.net)|(?:\.org)|(?:\.edu)|(?:\.info)|(?:\.cc)|(?:\.gov))", resphtml):
+        for url in re.findall(r"https?://www\.[_\w\-\.]+(?:(?:\.com)|(?:\.cn)|(?:\.net)|(?:\.org)|(?:\.edu)|(?:\.info)|(?:\.cc)|(?:\.gov))", resphtml):
             urlset.add(url)
         threadList = list()
         for url in urlset:
