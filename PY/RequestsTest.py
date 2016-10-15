@@ -71,7 +71,53 @@ def PostFile():
     print(resp.text)
 
 
+def SaveImage(url, name):
+    "保存图片"
+    if not os.path.exists("Image"):
+        os.mkdir("Image")
+    if os.path.exists("Image/" + name):
+        return
+    s = requests.Session()
+    s.headers = {"User-agent": "Mozilla/5.0"}
+    try:
+        resp = s.get(url, timeout=10)
+        if resp.status_code == 200:
+            open("Image/" + name, "wb").write(resp.content)
+    except Exception as e:
+        print("访问失败:" + url)
+        print(e)
+
+
+def GetImg():
+    s = requests.Session()
+    s.headers = {"User-agent": "Mozilla/5.0"}
+    respIndex = s.get("http://dazui88.com/tag/ddy/")
+    soupIndex = BeautifulSoup(respIndex.text, "html.parser")
+    pages = set()
+    for a in soupIndex.find("div", class_="lbtcimg1").find_all("a"):
+        pages.add("http://dazui88.com" + a["href"])
+    print(pages)
+    for page in pages:
+        nextUrl = page[page.rfind("/") + 1:]
+        while nextUrl != None:
+            try:
+                print(page[:page.rfind("/") + 1] + nextUrl)
+                respPage = s.get(page[:page.rfind("/") + 1] + nextUrl, timeout=10)
+                respPage.encoding = "gb2312"
+                soupPage = BeautifulSoup(respPage.text, "html.parser")
+                for image in soupPage.find_all("div", id="efpBigPic")[0].find_all("img"):
+                    name = "img" + image["src"].split("/")[-1]
+                    SaveImage(image["src"], name)
+                nexta = soupPage.find("a", string="下一页")
+                nextUrl = None
+                if nexta["href"] != "#":
+                    nextUrl = nexta["href"]
+            except Exception as e:
+                print(e)
+
+
 if __name__ == "__main__":
     # SessionPost()
     # CookieFromFile()
-    PostFile()
+    # PostFile()
+    GetImg()
