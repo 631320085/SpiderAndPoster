@@ -9,7 +9,7 @@ RedisClient = redis.StrictRedis(port=6381, charset="utf-8", decode_responses=Tru
 
 
 def main():
-    url = "http://www.360.com"
+    url = "http://www.DomainYouWantDig.com"
     DigSite(url)
 
 
@@ -24,11 +24,13 @@ def DigSite(url, deep=1):
         RedisClient.set(key, "访问失败")
         print("访问失败")
     else:
+        #以下解析都可以换成BeautifulSoup
+        #自动设置编码
         charset = re.search(r"charset=\"?\S*\w\"?", resp.text)
         if charset is not None:
             charset = charset.group().replace('"', '')
             resp.encoding = charset[8:]
-        #解析解码后的html
+        #正则解析html
         resphtml = resp.text
         value = "{"
         title = re.search(r"<title>.*</title>", resphtml)
