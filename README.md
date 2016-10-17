@@ -1,2 +1,3 @@
-# WebSiteCollector  
-网站信息抓取器以及urllib和requests的相关应用
+# SpiderAndPoster
+一些Spider和一些Poster  
+代码中的相关域名链接已隐藏，相关数据读取保存文件未提交，仅展示用法
