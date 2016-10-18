@@ -15,13 +15,19 @@ def PostContent(s, postUrl, reply, postData):
             insert = random.randint(1, len(reply))
             reply = reply[:insert] + "&" + reply[insert:]
         huaji = "[emotion pic_type=1 width=30 height=30]http://tb2.bdstatic.com/tb/editor/images/face/i_f25.png?t=20140803[/emotion]"
-        postData["content"] = reply.replace("&", huaji)
+        randstr = ""
+        for k in range(1, 4):
+            for l in range(0, random.randint(5, 15)):
+                randstr += "_"
+            randstr += "."
+            time.sleep(1)
+        postData["content"] = reply.replace("&", huaji) + randstr
         try:
             print("回帖:" + postData["tid"])
             resp = s.post(postUrl, postData)
             print(resp.text)
             success = True
-            time.sleep(random.randint(10, 25))
+            time.sleep(random.randint(10, 20))
         except Exception as e:
             print(e)
 
