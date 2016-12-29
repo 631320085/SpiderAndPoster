@@ -1,12 +1,16 @@
 from HtmlGetter import WebHtml
 import datetime
 import redis
+import requests
 
-RedisClient = redis.StrictRedis(port=6381, charset="utf-8", decode_responses=True)
-count = 0
-for key in RedisClient.keys("Site:*"):
-    count += 1
-    print(str(count) + " " + key)
+response = requests.get("http://www.6ants.com")
+print(response.text)
+
+# RedisClient = redis.StrictRedis(port=6381, charset="utf-8", decode_responses=True)
+# count = 0
+# for key in RedisClient.keys("Site:*"):
+#     count += 1
+#     print(str(count) + " " + key)
 
 # GetHtml 测试
 # wh = WebHtml("http://www.zhihu.com/")

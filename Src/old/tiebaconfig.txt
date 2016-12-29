@@ -1,0 +1,17 @@
+PostUrl:http://tieba.baidu.com/f/commit/post/add
+TemplateNum:3
+
+fid1:59099
+kw1:李毅
+tid1:4826138111
+content1:早上好，请勿直接回复，回复请到前排。
+
+fid2:4041295
+kw2:theoffspring
+tid2:4824942305
+content2:做人没有梦想，和咸鱼有什么区别。
+
+listUrl3:http://tieba.baidu.com/f?kw=%E6%9D%8E%E6%AF%85&fr=index
+fid3:59099
+kw3:李毅
+content3:听说你很屌，但是做人没有梦想，和咸鱼已没有区别。
