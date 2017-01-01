@@ -55,10 +55,25 @@ class RqsTool():
             try:
                 resp = rqs.get(url, timeout=timeout)
                 return resp
-            except TimeoutError:
+            except Exception:
                 gtimes += 1
                 if gtimes > trytimes:
                     print(url + "无法访问，跳过。")
                     return None
                 print(url + "访问失败，重试。")
+                time.sleep(5)
+
+    def trypost(self, rqs, url, postdata, trytimes=2):
+        "带异常处理的多次post"
+        gtimes = 0
+        while True:
+            try:
+                resp = rqs.post(url, postdata)
+                return resp
+            except Exception:
+                gtimes += 1
+                if gtimes > trytimes:
+                    print(url + "无法post，跳过。")
+                    return None
+                print(url + "post失败，重试。")
                 time.sleep(5)
