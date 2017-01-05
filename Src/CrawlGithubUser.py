@@ -130,6 +130,7 @@ def post_issue():
      where Checked=1 and Email='' and FirstRepo<>'' and Issued=0"
 
     upsql = "update githubzhuser set Issued=1 where UID='{0}'"
+    upsql2 = "update githubzhuser set FirstRepo='' where UID='{0}'"
 
     rqs = RQSTOOL.set_fiddler_cookie(RQS, "Data/Fiddler/cokgithub.txt")
     postdata = dict()
@@ -137,7 +138,7 @@ def post_issue():
     postdata["authenticity_token"] = ""
     postdata["issue[title]"] = "标题"
     postdata["saved_reply_id"] = ""
-    postdata["issue[body]"] = "markdown内容"
+    postdata["issue[body]"] = "内容，发多了被封了，就没用了。"
     for row in MYSQLTOOL.query(usql):
         uid = row[0]
         frepo = row[1]
@@ -147,6 +148,9 @@ def post_issue():
         resp.encoding = "utf-8"
         soup = BeautifulSoup(resp.text, "html.parser")
         form = soup.find("form", id="new_issue")
+        if form is None:
+            MYSQLTOOL.execute(upsql2.replace("{0}", uid))
+            continue
         token = form.find("input", attrs={"name": "authenticity_token"})
 
         postdata["authenticity_token"] = token["value"]
@@ -163,3 +167,5 @@ if __name__ == "__main__":
     #craw_star_user("https://github.com/Show-Me-the-Code/python/stargazers")
     #craw_follow_user("https://github.com/clowwindy?tab=followers")
     #craw_user_info()
+    #post_issue()
+    print("完成")
