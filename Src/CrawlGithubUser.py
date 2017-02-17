@@ -116,11 +116,13 @@ def craw_user_info():
         liemail = soup.find("li", attrs={"aria-label": "Email"})
         if liemail != None:
             email = liemail.find("a").text
-        spanfrepo = soup.find("span", class_="repo js-repo")
-        if spanfrepo != None:
-            frepo = spanfrepo.text
-        MYSQLTOOL.execute(upsql.replace("{0}", email).replace("{1}", frepo).replace("{2}", uid))
-        print(uid + "信息已获取")
+            spanfrepo = soup.find("span", class_="repo js-repo")
+            if spanfrepo != None:
+                frepo = spanfrepo.text
+            MYSQLTOOL.execute(upsql.replace("{0}", email).replace("{1}", frepo).replace("{2}", uid))
+            print(uid + "信息已获取")
+        else:
+            print(uid + "邮箱为空")
         time.sleep(2)
 
 
@@ -164,8 +166,9 @@ def post_issue():
 
 
 if __name__ == "__main__":
-    #craw_star_user("https://github.com/Show-Me-the-Code/python/stargazers")
+    #此页面仅供html抓取参考了，GitHub的api已经有很完善的工具了，各种语言直接调用相关API即可
+    #craw_star_user("https://github.com/JeffreySu/WeiXinMPSDK/stargazers")
     #craw_follow_user("https://github.com/clowwindy?tab=followers")
-    #craw_user_info()
+    craw_user_info()
     #post_issue()
     print("完成")

@@ -4,7 +4,6 @@ import random
 import re
 import urllib.parse
 import requests
-from bs4 import BeautifulSoup
 from Tool.RequestsTool import RqsTool
 
 RQSTOOL = RqsTool()
@@ -89,5 +88,5 @@ if __name__ == "__main__":
     QDATA["tid"] = ""
     QDATA["content"] = "我是不是二楼，是不是又怎样，不是已经有十五字了。"
     QURL = "http://tieba.baidu.com/f?kw=%E9%AD%94%E5%85%BD%E4%B8%96%E7%95%8C"
-    reply_newtie(QURL, QDATA, 10, 10)
+    #reply_newtie(QURL, QDATA, 10, 10)
     print("完成")
