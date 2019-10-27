@@ -15,6 +15,7 @@ def post_reply(data, count, sleep):
     "回帖"
     pdsample = """ie=utf-8&kw=github&fid=2748553&tid=4913371495&vcode_md5=&floor_num=3&rich_text=1&tbs=cb6b34d0ed7bcb291483587140&content=%E5%9B%9E%E5%A4%8D%E6%B5%8B%E8%AF%95%5Bemotion+pic_type%3D1+width%3D30+height%3D30%5Dhttp%3A%2F%2Ftb2.bdstatic.com%2Ftb%2Feditor%2Fimages%2Fface%2Fi_f25.png%3Ft%3D20140803%5B%2Femotion%5D&files=%5B%5D&mouse_pwd=11%2C12%2C15%2C17%2C12%2C11%2C10%2C10%2C52%2C12%2C17%2C13%2C17%2C12%2C17%2C13%2C17%2C12%2C17%2C13%2C17%2C12%2C17%2C13%2C17%2C12%2C17%2C13%2C52%2C12%2C14%2C5%2C14%2C8%2C13%2C52%2C12%2C4%2C15%2C13%2C17%2C12%2C13%2C5%2C13%2C14835871387610&mouse_pwd_t=1483587138761&mouse_pwd_isclick=0&__type__=reply"""
 
+    haha = "会收到回复"
     rqs = RQSTOOL.set_fiddler_cookie(RQS, "Data/Fiddler/coktieba.txt")
     postdata = dict()
     for dat in urllib.parse.unquote(pdsample).split("&"):
